@@ -1,6 +1,6 @@
 #!/bin/bash 
 #更新README的脚本说明
-Script=$(find . -iname "00*.sh" |sort -n )
+Script=$(find . -iname "0*.sh" |sort -n )
 #echo $Script
 for files in $Script
 do

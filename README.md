@@ -34,3 +34,15 @@ http://naotu.baidu.com/file/ea22e2af096b0e2797cf051154bb5213?token=dc7a25cd45f60
 
 009
 #mysql 分库备份
+
+010
+#与mysql 分表同
+
+011
+#I am oldboy teacher welcome to oldboy training class 打印这句话中字母不大于6的单词
+
+012
+#MySQL 主从监控:守护脚本，每30s监控一次mysql 主从复制是否异常，异常就发生邮件给管理员
+
+013
+#比较两个用户读入的数字，比较大小，提示参数是否为整数和一数字，输出比较结果
