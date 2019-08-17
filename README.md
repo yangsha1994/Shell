@@ -25,3 +25,12 @@ http://naotu.baidu.com/file/ea22e2af096b0e2797cf051154bb5213?token=dc7a25cd45f60
 
 006
 #创建10个账号oldboy01-oldboy10,并设置密码 （密码为随机数，要求是8位数字与字母混合）
+
+007
+#扫描网络内存活的主机
+
+008
+#解决dos攻击，检查web日志连接数，防火墙封闭此ip
+
+009
+#mysql 分库备份
