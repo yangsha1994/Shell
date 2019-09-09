@@ -12,7 +12,7 @@ NGINX_GROUP=daemon
 NGINX_VERSION="nginx-1.14.0"
 NGINX_PREFIX="/xfdata/soft/nginx"
 
-
+#编译添加了淘宝的监控监控模块
 NGINX_COMPILE_COMMAND="./configure \
                         --user=$CONF_WWW_USER \
                         --group=$CONF_WWW_GROUP \
