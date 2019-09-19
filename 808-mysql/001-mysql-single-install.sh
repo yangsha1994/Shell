@@ -48,7 +48,9 @@ else
 fi
 
 yum -y install make gcc-c++ bison-devel  ncurses-devel  perl perl-devel wget
+[[ ! -f /tmp/${CMAKE_VERSION}.tar.gz  ]] && {
 wget https://cmake.org/files/v3.4/${CMAKE_VERSION}.tar.gz -P /tmp
+
      if(( $? == 0 ))
        then
         echo "cmake DownLoad sucessfully!" 
@@ -56,15 +58,19 @@ wget https://cmake.org/files/v3.4/${CMAKE_VERSION}.tar.gz -P /tmp
         echo "cmake DownLoad failed!"
         exit $ERROR_EXIT
      fi
+}
+
+cmakeversion=`echo |awk -F '-' '{print $2}'`
+[[ $(cmake -version |grep $cmakeversion  |wc -l ) -lt  0 ]] && {
 cd /tmp
 tar xzvf ${CMAKE_VERSION}.tar.gz 
 cd ${CMAKE_VERSION}
 ./bootstrap
 make && make install
-
+}
 
 yum install gcc gcc-c++ bzip2 bzip2-devel bzip2-libs python-devel -y
-rm -rf /tmp/boost_1_59*
+[[ ! -f /tmp/${BOOST_VERSION}.tar.gz  ]] && {
 wget http://downloads.sourceforge.net/project/boost/boost/1.59.0/${BOOST_VERSION}.tar.gz -P /tmp
      if(( $? == 0 ))
        then
@@ -73,6 +79,8 @@ wget http://downloads.sourceforge.net/project/boost/boost/1.59.0/${BOOST_VERSION
         echo "boost DownLoad failed!"
         exit $ERROR_EXIT
      fi
+}
+#Mysql5.7版本更新后有很多变化，比如json等，连安装都有变化，他安装必须要BOOST库，不过mysql的官网源码有带boost库的源码和不带boost库的源码两种，因此有两种安装方式
 cd /tmp
 tar xzvf ${BOOST_VERSION}.tar.gz
 cd ${BOOST_VERSION}
@@ -85,7 +93,7 @@ wget http://downloads.mysql.com/archives/get/file/${MYSQL_VERSION}.tar.gz -P /tm
 }
 
 cd /tmp
-tar xzvf ${MYSQL_VERSION}.tar.gz
+tar -zxvf ${MYSQL_VERSION}.tar.gz
 cd ${MYSQL_VERSION}
 
 #编译
