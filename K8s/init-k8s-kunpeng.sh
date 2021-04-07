@@ -121,11 +121,12 @@ sed -i "s/\/dev\/mapper\/centos-swap/\#\/dev\/mapper\/centos-swap/g" /etc/fstab
 
 
 #开启内核参数方便记录
-echo 1 > /proc/sys/net/bridge/bridge-nf-call-iptables
-echo 1 > /proc/sys/net/bridge/bridge-nf-call-ip6tables
-echo 1 > /proc/sys/net/ipv4/ip_forward
-#验证
-lsmod | grep br_netfilter
+cat > /etc/sysctl.d/k8s.conf << EOF
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+net.ipv4.ip_forward = 1
+
+EOF
 
 #kube-proxy使用ipvs来实现负载均衡，所以需要安装ipvs环境。载入系统模块
 modprobe ip_vs
@@ -154,7 +155,7 @@ yum install -y yum-utils >> /dev/null  2>&1
 yum makecache fast >> /dev/null  2>&1
 
 #安装docker
-yum install -y docker-ce-19.03 docker-ce-cli-19.03   >> /dev/null  2>&1
+yum install -y docker-ce-19.03.8-3.el7 docker-ce-cli-19.03.8-3.el7  >> /dev/null  2>&1
 if [ ! -f /etc/docker/daemon.json ]
 then
   mkdir /etc/docker
