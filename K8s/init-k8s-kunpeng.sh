@@ -177,4 +177,4 @@ systemctl start docker&& systemctl enable docker
 docker rm $(docker ps -aq)
 docker rmi $(docker images -aq)
 #安装Kubernetes
-yum install -y kubelet-1.19.0 kubectl-1.19.0 kubeadm-1.19.0 kubernetes-cni-1.19.0 kubernetes-cni-1.19.0 -y >> /dev/null  2>&1
+yum install -y kubelet-1.19.0 kubectl-1.19.0 kubeadm-1.19.0 kubernetes-cni-1.19.0  -y >> /dev/null  2>&1
